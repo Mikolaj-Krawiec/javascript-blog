@@ -73,3 +73,28 @@
   generateTitleLinks();
 
 }
+
+const optArticleTagsSelector = '.post-tags .list';
+
+function generateTags(){
+  /* find all articles */
+  const articles = document.querySelectorAll('article');
+  /* START LOOP: for every article: */
+  for (const article of articles) {
+    /* find tags wrapper, make html variable with empty string, get tags from data-tags attribute, split tags into array */
+    let tagHTML = '';
+    const tags = article.getAttribute('data-tags').split(' ');
+
+    /* START LOOP: for each tag */
+    for (const tag of tags) {
+      /* generate HTML of the link, add generated code to html variable */
+      tagHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+    }
+    /* END LOOP: for each tag, insert HTML of all the links into the tags wrapper */
+    article.querySelector(optArticleTagsSelector).innerHTML = tagHTML;
+  }
+  /* END LOOP: for every article: */
+}
+
+generateTags();
+
